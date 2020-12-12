@@ -3,7 +3,7 @@ class PhotoPostsController < ApplicationController
 
   # GET /photo_posts
   def index
-    @photo_posts = PhotoPost.all
+    @photo_posts = PhotoPost.all.order(id: :desc)
 
     render json: @photo_posts
   end

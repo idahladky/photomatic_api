@@ -20,6 +20,10 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  port: 5432
+  host: localhost
+  username: idahladky
+  password: chroi
 
 development:
   <<: *default
@@ -80,6 +84,7 @@ test:
 #
 production:
   <<: *default
-  database: photomatic_api_production
-  username: photomatic_api
-  password: <%= ENV['PHOTOMATIC_API_DATABASE_PASSWORD'] %>
+  # database: photomatic_api_production
+  # username: photomatic_api
+  # password: <%= ENV['PHOTOMATIC_API_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
