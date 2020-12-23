@@ -3,10 +3,16 @@ class PhotosController < ApplicationController
     def index
         @photos = Photo.order('created_at')
     end
+
+    def show
+        @photo = Photo.find(params[:id])
+        render json: @photo, status: :ok
+    end
   
     #New action for creating a new photo
     def new
         @photo = Photo.new
+        render "photos/new"
     end
   
     #Create action ensures that submitted photo gets created if it meets the requirements
@@ -20,6 +26,16 @@ class PhotosController < ApplicationController
             render :new
         end
     end
+
+    def destroy
+        @photo = Photo.find(params[:id])
+          if @photo.destroy
+            flash[:notice] = "Successfully deleted photo!"
+            redirect_to root_path
+          else
+            flash[:alert] = "Error deleting photo!"
+          end
+        end
   
     private
   

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  root to: "photos#index"
+  get "photos/new", :to => "photos#new"
+  resources :photos, only: [:index, :show, :create, :update, :destroy]
   resources :photo_posts
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+   
 end
